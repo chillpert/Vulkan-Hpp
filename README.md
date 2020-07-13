@@ -414,10 +414,10 @@ class must provide a callable type for each used Vulkan function. Vulkan-Hpp pro
 
 ```c++
 // This dispatch class will fetch all function pointers through the passed instance
-vk::DispatchLoaderDynamic dldi(instance);
+vk::DispatchLoaderDynamic dldi(instance, vkGetInstanceProcAddr);
 
 // This dispatch class will fetch function pointers for the passed device if possible, else for the passed instance
-vk::DispatchLoaderDynamic dldid(instance, device);
+vk::DispatchLoaderDynamic dldid(instance, vkGetInstanceProcAddr, device, vkGetDeviceProcAddr);
 
 // Pass dispatch class to function call as last parameter
 device.getQueue(graphics_queue_family_index, 0, &graphics_queue, dldid);
